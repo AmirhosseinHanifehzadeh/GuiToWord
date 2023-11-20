@@ -355,7 +355,7 @@ class DocGenerator(QWidget):
             self.input_values[key] = line_edit
             table_info_layout.addRow(label, line_edit)
 
-        container_layout.addWidget(table_info_layout)
+        container_layout.addWidget(table_info)
 
         for key in session1_info_group:
             label_text = labels_text[key]
