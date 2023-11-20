@@ -1,5 +1,5 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QFormLayout, QScrollArea, QGroupBox
+from sys import exit, argv
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QFormLayout, QScrollArea, QGroupBox, QFileDialog
 from main import save_doc
 
 class DocGenerator(QWidget):
@@ -28,6 +28,8 @@ class DocGenerator(QWidget):
         incharge_group_layout = QFormLayout(incharge_group)
         teacher_group = QGroupBox("اطلاعات مدرس / مدرسین")
         teacher_group_layout = QFormLayout(teacher_group)
+        table_info = QGroupBox("اطلاعات دوره")
+        table_info_layout = QFormLayout(table_info)
         session1 = QGroupBox("جلسه اول")
         session1_layout = QFormLayout(session1)
         session2 = QGroupBox("جلسه دوم")
@@ -346,6 +348,15 @@ class DocGenerator(QWidget):
 
         container_layout.addWidget(incharge_group)
 
+        for key in labels_keys:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            table_info_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(table_info_layout)
+
         for key in session1_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
@@ -443,11 +454,18 @@ class DocGenerator(QWidget):
             value = line_edit.text()
             result[label_text] = value
 
-        # Implement the rest of the contract creation logic here
-        save_doc(result)
+        # Open a file dialog to choose the path
+        file_dialog = QFileDialog()
+        file_dialog.setFileMode(QFileDialog.AnyFile)
+        file_dialog.setAcceptMode(QFileDialog.AcceptSave)
+        file_dialog.setDefaultSuffix("docx")
+        save_path, _ = file_dialog.getSaveFileName(self, "Save File", "", "Word Documents (*.docx)")
+
+        if save_path:
+            save_doc(result, save_path)
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    app = QApplication(argv)
     window = DocGenerator()
     window.show()
-    sys.exit(app.exec_())
+    exit(app.exec_())
