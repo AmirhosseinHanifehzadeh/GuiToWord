@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QFormLayout, QScrollArea, QGroupBox
+from main import save_doc
 
 class ContractGenerator(QWidget):
     def __init__(self):
@@ -13,20 +14,36 @@ class ContractGenerator(QWidget):
         # Dictionary to store input values
         self.input_values = {}
 
-        form_layout = QFormLayout()
-        subject_group = QGroupBox("اطلاعات مربوط به درس")
-        incharge_group = QGroupBox("اطلاعات مسئول درس")
-        teacher_group = QGroupBox("اطلاعات مدرس / مدرسین")
-        session1 = QGroupBox("جلسه اول")
-        session2 = QGroupBox("جلسه دوم")
-        session3 = QGroupBox("جلسه سوم")
-        session4 = QGroupBox("جلسه چهارم")
-        session5 = QGroupBox("جلسه پنجم")
-        session6 = QGroupBox("جلسه ششم")
-        session7 = QGroupBox("جلسه هفتم")
-        session7 = QGroupBox("جلسه هشتم")
+        # Create a scroll area
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
 
-        
+        # Central container to hold all the groups
+        container = QWidget()
+        container_layout = QVBoxLayout(container)
+
+        subject_group = QGroupBox("اطلاعات مربوط به درس")
+        subject_group_layout = QFormLayout(subject_group)
+        incharge_group = QGroupBox("اطلاعات مسئول درس")
+        incharge_group_layout = QFormLayout(incharge_group)
+        teacher_group = QGroupBox("اطلاعات مدرس / مدرسین")
+        teacher_group_layout = QFormLayout(teacher_group)
+        session1 = QGroupBox("جلسه اول")
+        session1_layout = QFormLayout(session1)
+        session2 = QGroupBox("جلسه دوم")
+        session2_layout = QFormLayout(session2)
+        session3 = QGroupBox("جلسه سوم")
+        session3_layout = QFormLayout(session3)
+        session4 = QGroupBox("جلسه چهارم")
+        session4_layout = QFormLayout(session4)
+        session5 = QGroupBox("جلسه پنجم")
+        session5_layout = QFormLayout(session5)
+        session6 = QGroupBox("جلسه ششم")
+        session6_layout = QFormLayout(session6)
+        session7 = QGroupBox("جلسه هفتم")
+        session7_layout = QFormLayout(session7)
+        session8 = QGroupBox("جلسه هشتم")
+        session8_layout = QFormLayout(session8)
 
         labels_text = {
             'providedTrainingGroup': 'خدمات گروه آموزشی',
@@ -192,7 +209,7 @@ class ContractGenerator(QWidget):
         ]
 
         session2_info_group = [
-            'purpose2',
+            'purpose2' ,
             'sp2',
             'do2',
             'k2',
@@ -207,7 +224,7 @@ class ContractGenerator(QWidget):
         ]
 
         session3_info_group = [
-            'purpose3',
+            'purpose3' ,
             'sp3',
             'do3',
             'k3',
@@ -222,7 +239,7 @@ class ContractGenerator(QWidget):
         ]
 
         session4_info_group = [
-            'purpose4',
+            'purpose4' ,
             'sp4',
             'do4',
             'k4',
@@ -237,7 +254,7 @@ class ContractGenerator(QWidget):
         ]
 
         session5_info_group = [
-            'purpose5',
+            'purpose5' ,
             'sp5',
             'do5',
             'k5',
@@ -252,7 +269,7 @@ class ContractGenerator(QWidget):
         ]
 
         session6_info_group = [
-            'purpose6',
+            'purpose6' ,
             'sp6',
             'do6',
             'k6',
@@ -266,9 +283,8 @@ class ContractGenerator(QWidget):
             't6',
         ]
 
-
         session7_info_group = [
-            'purpose7',
+            'purpose7' ,
             'sp7',
             'do7',
             'k7',
@@ -283,43 +299,134 @@ class ContractGenerator(QWidget):
         ]
 
         session8_info_group = [
-            'purpose7',
-            'sp7',
-            'do7',
-            'k7',
-            'a7',
-            's7',
-            'ea7',
-            'tm7',
-            'lm7',
-            'et7',
-            'em7',
-            't7',
+            'purpose8' ,
+            'sp8',
+            'do8',
+            'k8',
+            'a8',
+            's8',
+            'ea8',
+            'tm8',
+            'lm8',
+            'et8',
+            'em8',
+            't8',
         ]
+        # ... (session2_info_group, session3_info_group, ..., session8_info_group)
 
         labels_keys = [
             "lastUpdate",
             "subjectDescription",
         ]
 
-        for 
-
-        for key in labels_keys:
-            label = QLabel(labels_text[key])
+        for key in subject_base_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
             line_edit = QLineEdit()
-
-            # Save the QLineEdit widget in the dictionary with the corresponding label as the key
             self.input_values[key] = line_edit
+            subject_group_layout.addRow(label, line_edit)
 
-            form_layout.addRow(label, line_edit)
+        container_layout.addWidget(subject_group)
 
-        scroll_area = QScrollArea()
-        scroll_area.setWidgetResizable(True)
+        for key in teacher_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            teacher_group_layout.addRow(label, line_edit)
 
-        container = QWidget()
-        container.setLayout(form_layout)
+        container_layout.addWidget(teacher_group)
+
+        for key in incharge_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            incharge_group_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(incharge_group)
+
+        for key in session1_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session1_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session1)
+
+        for key in session2_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session2_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session2)
+
+
+        for key in session3_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session3_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session3)
+
+
+        for key in session4_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session4_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session4)
+
+
+        for key in session5_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session5_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session5)
+
+
+        for key in session6_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session6_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session6)
+
+
+        for key in session7_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session7_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session7)
+
+
+        for key in session8_info_group:
+            label_text = labels_text[key]
+            label = QLabel(label_text)
+            line_edit = QLineEdit()
+            self.input_values[key] = line_edit
+            session8_layout.addRow(label, line_edit)
+
+        container_layout.addWidget(session8)
+
+        # ... (session2, session3, ..., session8)
+
         scroll_area.setWidget(container)
-
         layout.addWidget(scroll_area)
 
         create_contract_button = QPushButton("Create Contract")
@@ -327,7 +434,7 @@ class ContractGenerator(QWidget):
         layout.addWidget(create_contract_button)
 
         self.setLayout(layout)
-        self.setWindowTitle("Contract Generator")   
+        self.setWindowTitle("")   
 
     def create_contract(self):
         # Access the entered values from the dictionary
@@ -336,6 +443,7 @@ class ContractGenerator(QWidget):
             print(f"{label_text}: {value}")
 
         # Implement the rest of the contract creation logic here
+        save_doc(self.input_values)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
