@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QFormLayout, QScrollArea, QGroupBox
 from main import save_doc
 
-class ContractGenerator(QWidget):
+class DocGenerator(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -429,24 +429,25 @@ class ContractGenerator(QWidget):
         scroll_area.setWidget(container)
         layout.addWidget(scroll_area)
 
-        create_contract_button = QPushButton("Create Contract")
-        create_contract_button.clicked.connect(self.create_contract)
+        create_contract_button = QPushButton("save")
+        create_contract_button.clicked.connect(self.create_docx)
         layout.addWidget(create_contract_button)
 
         self.setLayout(layout)
         self.setWindowTitle("")   
 
-    def create_contract(self):
+    def create_docx(self):
+        result = {}
         # Access the entered values from the dictionary
         for label_text, line_edit in self.input_values.items():
             value = line_edit.text()
-            print(f"{label_text}: {value}")
+            result[label_text] = value
 
         # Implement the rest of the contract creation logic here
-        save_doc(self.input_values)
+        save_doc(result)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = ContractGenerator()
+    window = DocGenerator()
     window.show()
     sys.exit(app.exec_())
