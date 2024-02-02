@@ -1,5 +1,6 @@
 from sys import exit, argv
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QFormLayout, QScrollArea, QGroupBox, QFileDialog
+from PyQt5.QtGui import QFont
 from main import save_doc
 
 class DocGenerator(QWidget):
@@ -324,6 +325,7 @@ class DocGenerator(QWidget):
         for key in subject_base_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             subject_group_layout.addRow(label, line_edit)
@@ -333,6 +335,7 @@ class DocGenerator(QWidget):
         for key in teacher_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             teacher_group_layout.addRow(label, line_edit)
@@ -342,6 +345,7 @@ class DocGenerator(QWidget):
         for key in incharge_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             incharge_group_layout.addRow(label, line_edit)
@@ -351,6 +355,7 @@ class DocGenerator(QWidget):
         for key in labels_keys:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             table_info_layout.addRow(label, line_edit)
@@ -360,6 +365,7 @@ class DocGenerator(QWidget):
         for key in session1_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session1_layout.addRow(label, line_edit)
@@ -369,6 +375,7 @@ class DocGenerator(QWidget):
         for key in session2_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session2_layout.addRow(label, line_edit)
@@ -379,6 +386,7 @@ class DocGenerator(QWidget):
         for key in session3_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session3_layout.addRow(label, line_edit)
@@ -389,6 +397,7 @@ class DocGenerator(QWidget):
         for key in session4_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session4_layout.addRow(label, line_edit)
@@ -399,6 +408,7 @@ class DocGenerator(QWidget):
         for key in session5_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session5_layout.addRow(label, line_edit)
@@ -409,6 +419,7 @@ class DocGenerator(QWidget):
         for key in session6_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session6_layout.addRow(label, line_edit)
@@ -419,6 +430,7 @@ class DocGenerator(QWidget):
         for key in session7_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session7_layout.addRow(label, line_edit)
@@ -429,6 +441,7 @@ class DocGenerator(QWidget):
         for key in session8_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
+            label.setFont(create_large_font())
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             session8_layout.addRow(label, line_edit)
@@ -464,8 +477,14 @@ class DocGenerator(QWidget):
         if save_path:
             save_doc(result, save_path)
 
+def create_large_font():
+    font = QFont()
+    font.setPointSize(15)
+    return font
+
 if __name__ == '__main__':
     app = QApplication(argv)
+    app.setFont(create_large_font())
     window = DocGenerator()
     window.show()
     exit(app.exec_())
