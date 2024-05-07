@@ -31,22 +31,6 @@ class DocGenerator(QWidget):
         teacher_group_layout = QFormLayout(teacher_group)
         table_info = QGroupBox("اطلاعات دوره")
         table_info_layout = QFormLayout(table_info)
-        session1 = QGroupBox("جلسه اول")
-        session1_layout = QFormLayout(session1)
-        session2 = QGroupBox("جلسه دوم")
-        session2_layout = QFormLayout(session2)
-        session3 = QGroupBox("جلسه سوم")
-        session3_layout = QFormLayout(session3)
-        session4 = QGroupBox("جلسه چهارم")
-        session4_layout = QFormLayout(session4)
-        session5 = QGroupBox("جلسه پنجم")
-        session5_layout = QFormLayout(session5)
-        session6 = QGroupBox("جلسه ششم")
-        session6_layout = QFormLayout(session6)
-        session7 = QGroupBox("جلسه هفتم")
-        session7_layout = QFormLayout(session7)
-        session8 = QGroupBox("جلسه هشتم")
-        session8_layout = QFormLayout(session8)
 
         labels_text = {
             'providedTrainingGroup': 'خدمات گروه آموزشی',
@@ -342,6 +326,27 @@ class DocGenerator(QWidget):
             label_text = labels_text[key]
             label = QLabel(label_text)
             label.setFont(create_large_font())
+
+            if key == 'providedTrainingGroup':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "پرستاری بهداشت جامعه", "پرستاری داخلی و جراحی", "پرستاری روان و مدیریت", "پرستاری کودکان", "علوم پایه", "اتاق عمل و هشبری"])  
+                self.input_values[key] = combo_box
+                subject_group_layout.addRow(label, combo_box)
+                continue
+            if key == 'field':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "کارشناسی", "ارشد", "دکتری"])  
+                self.input_values[key] = combo_box
+                subject_group_layout.addRow(label, combo_box)
+                continue
+
+            if key == 'courseLocation':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "دانشکده پرستاری و مامایی", "بیمارستان امام حسین", "بیمارستان طالقانی", "بیمارستان شهدا", "بیمارستان مدرس", "بیمارستان لقمان", "بیمارستان لبافی نژاد"])  
+                self.input_values[key] = combo_box
+                subject_group_layout.addRow(label, combo_box)
+                continue
+
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             subject_group_layout.addRow(label, line_edit)
@@ -352,6 +357,21 @@ class DocGenerator(QWidget):
             label_text = labels_text[key]
             label = QLabel(label_text)
             label.setFont(create_large_font())
+
+            if key == 'teacherRank':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "استادیار", "دانشیار"])  
+                self.input_values[key] = combo_box
+                teacher_group_layout.addRow(label, combo_box)
+                continue
+
+            if key == 'teacherLocation':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "دانشکده پرستاری و مامایی", "بیمارستان امام حسین", "بیمارستان طالقانی", "بیمارستان شهدا", "بیمارستان مدرس", "بیمارستان لقمان", "بیمارستان لبافی نژاد"])   
+                self.input_values[key] = combo_box
+                teacher_group_layout.addRow(label, combo_box)
+                continue
+
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             teacher_group_layout.addRow(label, line_edit)
@@ -362,6 +382,21 @@ class DocGenerator(QWidget):
             label_text = labels_text[key]
             label = QLabel(label_text)
             label.setFont(create_large_font())
+            
+            if key == 'incharge':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "استادیار", "دانشیار"])  
+                self.input_values[key] = combo_box
+                incharge_group_layout.addRow(label, combo_box)
+                continue
+
+            if key == 'officeLocation':
+                combo_box = QComboBox()
+                combo_box.addItems(["", "دانشکده پرستاری و مامایی", "بیمارستان امام حسین", "بیمارستان طالقانی", "بیمارستان شهدا", "بیمارستان مدرس", "بیمارستان لقمان", "بیمارستان لبافی نژاد"])   
+                self.input_values[key] = combo_box
+                incharge_group_layout.addRow(label, combo_box)
+                continue
+            
             line_edit = QLineEdit()
             self.input_values[key] = line_edit
             incharge_group_layout.addRow(label, line_edit)
@@ -378,120 +413,59 @@ class DocGenerator(QWidget):
 
         container_layout.addWidget(table_info)
 
-        for key in session1_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            if key == "em1":
-                # Create a QComboBox for "em1" field
-                combo_box = QComboBox()
-                combo_box.addItems(["سوال و جواب شفاهی", "حضور فعال", "ارزشیابی همتا", "آزمون کتبی", "ارائه کنفرانس", "ارائه ژورنال کلاب"])  # Add your options here
-                self.input_values[key] = combo_box
-                session1_layout.addRow(label, combo_box)
-            elif key == "et1": 
-                combo_box = QComboBox()
-                combo_box.addItems(["پاورپوینت", "ماژیک و تخته", "اینترنت", "مولاژ", "تجهیزات بالینی"])  # Add your options here
-                self.input_values[key] = combo_box
-                session1_layout.addRow(label, combo_box)
-            elif key == "ea1": 
-                combo_box = QComboBox()
-                combo_box.addItems(["مجازی", "حضوری"]) 
-                self.input_values[key] = combo_box
-                session1_layout.addRow(label, combo_box)
-            elif key == "tm1": 
-                combo_box = QComboBox()
-                combo_box.addItems(["یادگیری مبتنی بر حل­ مسأله", " بحث در گروه کوچک", " یادگیری مبتنی بر ارائه پروژه", " بازی وارسازی", " بحث در گروه کوچک", ' پرسش و پاسخ', 'سخنرانی', " و فروم های گفت و گو ", "کلاس آنلاین همزمان", " کلاس آنلاین غیر هم زمان", " کلاس وارونه ", "روش های شبیه­ سازی", " یادگیری مبتنی بر سناریو"]) 
-                self.input_values[key] = combo_box
-                session1_layout.addRow(label, combo_box)
-            elif key == "tm1": 
-                combo_box = QComboBox()
-                combo_box.addItems(["حضور فعال", " شرکت در ژورنال کلاب", " مشاهده فعالیت", " انجام فعالیت", 'برگزاری کنفرانس', ' شرکتر در راند']) 
-                self.input_values[key] = combo_box
-                session1_layout.addRow(label, combo_box)
-            else:
-                # Create a QLineEdit for other fields
-                line_edit = QLineEdit()
-                self.input_values[key] = line_edit
-                session1_layout.addRow(label, line_edit)
+        session_info_groups = {
+            1: session1_info_group,
+            2: session2_info_group,
+            3: session3_info_group,
+            4: session4_info_group,
+            5: session5_info_group,
+            6: session6_info_group,
+            7: session7_info_group,
+            8: session8_info_group,
+        }
 
-        container_layout.addWidget(session1)
+        for session_number, session_info_group in session_info_groups.items():
+            session_group_box = QGroupBox(f"جلسه {session_number}")
+            session_group_layout = QFormLayout(session_group_box)
 
-        for key in session2_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session2_layout.addRow(label, line_edit)
+            for key in session_info_group:
+                label_text = labels_text[key]
+                label = QLabel(label_text)
+                label.setFont(create_large_font())
 
-        container_layout.addWidget(session2)
+                if key.startswith("em"):
+                    combo_box = QComboBox()
+                    combo_box.addItems(["", "سوال و جواب شفاهی", "حضور فعال", "ارزشیابی همتا", "آزمون کتبی", "ارائه کنفرانس", "ارائه ژورنال کلاب"])  # Add your options here
+                    self.input_values[key + str(session_number)] = combo_box
+                    session_group_layout.addRow(label, combo_box)
+                elif key.startswith("et"):
+                    combo_box = QComboBox()
+                    combo_box.addItems(["", "سوال و جواب شفاهی", "حضور فعال", "ارزشیابی همتا", "آزمون کتبی", "ارائه کنفرانس", "ارائه ژورنال کلاب"])  # Add your options here
+                    self.input_values[key + str(session_number)] = combo_box
+                    session_group_layout.addRow(label, combo_box)
+                elif key.startswith("ea"):
+                    combo_box = QComboBox()
+                    combo_box.addItems(["", "مجازی", "حضوری"]) 
+                    self.input_values[key + str(session_number)] = combo_box
+                    session_group_layout.addRow(label, combo_box)
+                elif key.startswith("tm"):
+                    combo_box = QComboBox()
+                    combo_box.addItems(["", "یادگیری مبتنی بر حل­ مسأله", " بحث در گروه کوچک", " یادگیری مبتنی بر ارائه پروژه", " بازی وارسازی", " بحث در گروه کوچک", ' پرسش و پاسخ', 'سخنرانی', " و فروم های گفت و گو ", "کلاس آنلاین همزمان", " کلاس آنلاین غیر هم زمان", " کلاس وارونه ", "روش های شبیه­ سازی", " یادگیری مبتنی بر سناریو"]) 
+                    self.input_values[key + str(session_number)] = combo_box
+                    session_group_layout.addRow(label, combo_box)
+                elif key.startswith("lm"):
+                    combo_box = QComboBox()
+                    combo_box.addItems(["", "حضور فعال", " شرکت در ژورنال کلاب", " مشاهده فعالیت", " انجام فعالیت", 'برگزاری کنفرانس', ' شرکتر در راند']) 
+                    self.input_values[key + str(session_number)] = combo_box
+                    session_group_layout.addRow(label, combo_box)
+                else:
+                    # Create line edit for other keys
+                    line_edit = QLineEdit()
+                    self.input_values[key + str(session_number)] = line_edit
+                    session_group_layout.addRow(label, line_edit)
 
+            container_layout.addWidget(session_group_box)
 
-        for key in session3_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session3_layout.addRow(label, line_edit)
-
-        container_layout.addWidget(session3)
-
-
-        for key in session4_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session4_layout.addRow(label, line_edit)
-
-        container_layout.addWidget(session4)
-
-
-        for key in session5_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session5_layout.addRow(label, line_edit)
-
-        container_layout.addWidget(session5)
-
-
-        for key in session6_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session6_layout.addRow(label, line_edit)
-
-        container_layout.addWidget(session6)
-
-
-        for key in session7_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session7_layout.addRow(label, line_edit)
-
-        container_layout.addWidget(session7)
-
-
-        for key in session8_info_group:
-            label_text = labels_text[key]
-            label = QLabel(label_text)
-            label.setFont(create_large_font())
-            line_edit = QLineEdit()
-            self.input_values[key] = line_edit
-            session8_layout.addRow(label, line_edit)
-
-        container_layout.addWidget(session8)
-
-        # ... (session2, session3, ..., session8)
 
         scroll_area.setWidget(container)
         layout.addWidget(scroll_area)
