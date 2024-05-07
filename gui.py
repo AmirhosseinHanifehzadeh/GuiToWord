@@ -33,28 +33,28 @@ class DocGenerator(QWidget):
         table_info_layout = QFormLayout(table_info)
 
         labels_text = {
-            'providedTrainingGroup': 'خدمات گروه آموزشی',
+            'providedTrainingGroup': 'گروه آموزشی ارایه دهنده',
             "subject": 'نام درس',
             "category": "نوع و تعداد واحد",
             "prerequisite": "پیش نیاز / هم نیاز",
             "field": "رشته و مقطع تحصیلی", 
-            "courseLocation": "رشته و مقاطع تحصیلی",
-            "courseTime": "محل برگزاری دوره",
-            "inchargeName": "روز و ساعت کلاس",
-            "incharge": "نام و مسئول درس",
-            "inchargeField": "رتبه علمی",
-            "officeLocation": "رشته تحصیلی",
-            "inchargePhone": "محل کار",
-            "inchargeEmail": "تلفن تماس",
-            "teacherName": "پست الکترونیک",
-            "teacherRank": "نام مدرس / مدرسین همکار",
+            "courseLocation": "محل برگزاری دوره",
+            "courseTime": "روز و ساعت کلاس",
+            "inchargeName": "نام مسيول درس",
+            "incharge": "رتبه علمی",
+            "inchargeField": "رشته تحصیلی",
+            "officeLocation": "محل کار",
+            "inchargePhone": "تلفن تماس",
+            "inchargeEmail": "پست الکترونیک",
+            "teacherName": "نام مدرس / مدرسین همکار",
+            "teacherRank": "رتبه علمی",
             "teacherEmail": "پست الکترونیک اساتید همکار",
             "teacherField": "رشته تحصیلی",
             "teacherLocation": "محل کار",
             "teacherPhone": "تلفن تماس",
             "lastUpdate": "تاریخ آخرین ویرایش",
             "subjectDescription": "شرح درس",
-            'purpose1': "هدف کلی",
+            'purpose': "هدف کلی",
             'sp1': "هدف اختصاصی",
             'do1': "پیامد مورد انتظار",
             'a1': "نگرش",
@@ -189,7 +189,7 @@ class DocGenerator(QWidget):
         ]
 
         session1_info_group = [
-            'purpose1' ,
+            'purpose',
             'sp1',
             'do1',
             'k1',
@@ -285,7 +285,7 @@ class DocGenerator(QWidget):
         ]
 
         session7_info_group = [
-            'purpose7' ,
+            'purpose7',
             'sp7',
             'do7',
             'k7',
@@ -330,12 +330,6 @@ class DocGenerator(QWidget):
             if key == 'providedTrainingGroup':
                 combo_box = QComboBox()
                 combo_box.addItems(["", "پرستاری بهداشت جامعه", "پرستاری داخلی و جراحی", "پرستاری روان و مدیریت", "پرستاری کودکان", "علوم پایه", "اتاق عمل و هشبری"])  
-                self.input_values[key] = combo_box
-                subject_group_layout.addRow(label, combo_box)
-                continue
-            if key == 'field':
-                combo_box = QComboBox()
-                combo_box.addItems(["", "کارشناسی", "ارشد", "دکتری"])  
                 self.input_values[key] = combo_box
                 subject_group_layout.addRow(label, combo_box)
                 continue
@@ -436,32 +430,32 @@ class DocGenerator(QWidget):
                 if key.startswith("em"):
                     combo_box = QComboBox()
                     combo_box.addItems(["", "سوال و جواب شفاهی", "حضور فعال", "ارزشیابی همتا", "آزمون کتبی", "ارائه کنفرانس", "ارائه ژورنال کلاب"])  # Add your options here
-                    self.input_values[key + str(session_number)] = combo_box
+                    self.input_values[key] = combo_box
                     session_group_layout.addRow(label, combo_box)
                 elif key.startswith("et"):
                     combo_box = QComboBox()
-                    combo_box.addItems(["", "سوال و جواب شفاهی", "حضور فعال", "ارزشیابی همتا", "آزمون کتبی", "ارائه کنفرانس", "ارائه ژورنال کلاب"])  # Add your options here
-                    self.input_values[key + str(session_number)] = combo_box
+                    combo_box.addItems(["", "پاورپوینت", "ماژیک و تخته", "اینترنت", "مولاژ", "تجهیزات بالینی"])  # Add your options here
+                    self.input_values[key] = combo_box
                     session_group_layout.addRow(label, combo_box)
                 elif key.startswith("ea"):
                     combo_box = QComboBox()
                     combo_box.addItems(["", "مجازی", "حضوری"]) 
-                    self.input_values[key + str(session_number)] = combo_box
+                    self.input_values[key] = combo_box
                     session_group_layout.addRow(label, combo_box)
                 elif key.startswith("tm"):
                     combo_box = QComboBox()
                     combo_box.addItems(["", "یادگیری مبتنی بر حل­ مسأله", " بحث در گروه کوچک", " یادگیری مبتنی بر ارائه پروژه", " بازی وارسازی", " بحث در گروه کوچک", ' پرسش و پاسخ', 'سخنرانی', " و فروم های گفت و گو ", "کلاس آنلاین همزمان", " کلاس آنلاین غیر هم زمان", " کلاس وارونه ", "روش های شبیه­ سازی", " یادگیری مبتنی بر سناریو"]) 
-                    self.input_values[key + str(session_number)] = combo_box
+                    self.input_values[key] = combo_box
                     session_group_layout.addRow(label, combo_box)
                 elif key.startswith("lm"):
                     combo_box = QComboBox()
                     combo_box.addItems(["", "حضور فعال", " شرکت در ژورنال کلاب", " مشاهده فعالیت", " انجام فعالیت", 'برگزاری کنفرانس', ' شرکتر در راند']) 
-                    self.input_values[key + str(session_number)] = combo_box
+                    self.input_values[key] = combo_box
                     session_group_layout.addRow(label, combo_box)
                 else:
                     # Create line edit for other keys
                     line_edit = QLineEdit()
-                    self.input_values[key + str(session_number)] = line_edit
+                    self.input_values[key] = line_edit
                     session_group_layout.addRow(label, line_edit)
 
             container_layout.addWidget(session_group_box)
@@ -481,7 +475,10 @@ class DocGenerator(QWidget):
         result = {}
         # Access the entered values from the dictionary
         for label_text, line_edit in self.input_values.items():
-            value = line_edit.text()
+            if isinstance(line_edit, QLineEdit):
+                value = line_edit.text()
+            else:
+                value = line_edit.currentText()
             result[label_text] = value
 
         # Open a file dialog to choose the path
