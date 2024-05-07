@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayou
 from PyQt5.QtGui import QFont
 from main import save_doc
 
+
 class DocGenerator(QWidget):
     def __init__(self):
         super().__init__()
@@ -165,7 +166,15 @@ class DocGenerator(QWidget):
             'lm8': "روش یادگیری",
             'et8': "ابزار آموزشی",
             'em8': "روش ارزیابی",
-            't8': "مدرس / مدرسین"
+            't8': "مدرس / مدرسین",
+            'sc1': "سهم نمره",
+            'sc2': "سهم نمره",
+            'sc3': "سهم نمره",
+            'sc4': "سهم نمره",
+            'sc5': "سهم نمره",
+            'sc6': "سهم نمره",
+            'sc7': "سهم نمره",
+            'sc8': "سهم نمره",
         }
 
         subject_base_group = [
@@ -197,7 +206,7 @@ class DocGenerator(QWidget):
         ]
 
         session1_info_group = [
-            'purpose1' ,
+            'purpose1',
             'sp1',
             'do1',
             'k1',
@@ -209,6 +218,7 @@ class DocGenerator(QWidget):
             'et1',
             'em1',
             't1',
+            'sc1'
         ]
 
         session2_info_group = [
@@ -224,10 +234,11 @@ class DocGenerator(QWidget):
             'et2',
             'em2',
             't2',
+            'sc2',
         ]
 
         session3_info_group = [
-            'purpose3' ,
+            'purpose3',
             'sp3',
             'do3',
             'k3',
@@ -239,10 +250,11 @@ class DocGenerator(QWidget):
             'et3',
             'em3',
             't3',
+            'sc3',
         ]
 
         session4_info_group = [
-            'purpose4' ,
+            'purpose4',
             'sp4',
             'do4',
             'k4',
@@ -254,6 +266,7 @@ class DocGenerator(QWidget):
             'et4',
             'em4',
             't4',
+            'sc4',
         ]
 
         session5_info_group = [
@@ -269,6 +282,7 @@ class DocGenerator(QWidget):
             'et5',
             'em5',
             't5',
+            'sc5',
         ]
 
         session6_info_group = [
@@ -284,10 +298,11 @@ class DocGenerator(QWidget):
             'et6',
             'em6',
             't6',
+            'sc6'
         ]
 
         session7_info_group = [
-            'purpose7' ,
+            'purpose7',
             'sp7',
             'do7',
             'k7',
@@ -299,10 +314,11 @@ class DocGenerator(QWidget):
             'et7',
             'em7',
             't7',
+            'sc7',
         ]
 
         session8_info_group = [
-            'purpose8' ,
+            'purpose8',
             'sp8',
             'do8',
             'k8',
@@ -314,6 +330,7 @@ class DocGenerator(QWidget):
             'et8',
             'em8',
             't8',
+            'sc8',
         ]
         # ... (session2_info_group, session3_info_group, ..., session8_info_group)
 
@@ -404,7 +421,6 @@ class DocGenerator(QWidget):
 
         container_layout.addWidget(session4)
 
-
         for key in session5_info_group:
             label_text = labels_text[key]
             label = QLabel(label_text)
@@ -436,7 +452,6 @@ class DocGenerator(QWidget):
             session7_layout.addRow(label, line_edit)
 
         container_layout.addWidget(session7)
-
 
         for key in session8_info_group:
             label_text = labels_text[key]
@@ -477,10 +492,12 @@ class DocGenerator(QWidget):
         if save_path:
             save_doc(result, save_path)
 
+
 def create_large_font():
     font = QFont()
     font.setPointSize(15)
     return font
+
 
 if __name__ == '__main__':
     app = QApplication(argv)
